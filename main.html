@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Personal Files Upload</title>
+  <title>Voting Eligibility Form</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h2>Upload Your Personal File</h2>
-    <input type="file" id="fileInput" />
-    <p id="fileName"></p>
-    <div id="fileContent"></div>
+    <h2>Voting Eligibility</h2>
+    <form id="voteForm">
+      <input type="text" id="name" placeholder="Enter your name" />
+      <input type="number" id="age" placeholder="Enter your age" />
+      <button type="submit" id="btn">Check Eligibility</button>
+    </form>
   </div>
 
   <script src="script.js"></script>

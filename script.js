@@ -1,24 +1,25 @@
-const fileInput = document.getElementById('fileInput');
-const fileNameDisplay = document.getElementById('fileName');
-const fileContentDisplay = document.getElementById('fileContent');
+document.getElementById('voteForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent form from reloading
 
-fileInput.addEventListener('change', function () {
-  const file = this.files[0];
+  const name = document.getElementById('name').value.trim();
+  const age = document.getElementById('age').value.trim();
 
-  if (file) {
-    fileNameDisplay.textContent = `Selected File: ${file.name}`;
-
-    if (file.type === "text/plain") {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        fileContentDisplay.textContent = e.target.result;
-      };
-      reader.readAsText(file);
-    } else {
-      fileContentDisplay.textContent = "Preview available only for .txt files.";
-    }
-  } else {
-    fileNameDisplay.textContent = '';
-    fileContentDisplay.textContent = '';
+  if (!name || !age) {
+    alert("Please enter valid details.");
+    return;
   }
+
+  const checkEligibility = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Number(age) >= 18) {
+        resolve(`Welcome, ${name}. You can vote.`);
+      } else {
+        reject(`Oh sorry ${name}. You aren't old enough.`);
+      }
+    }, 4000);
+  });
+
+  checkEligibility
+    .then(message => alert(message))
+    .catch(error => alert(error));
 });
